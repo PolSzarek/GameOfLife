@@ -1,0 +1,13 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script type="application/x-javascript" src="./src/minilibjs/egraph.min.js"></script>
+    <script type="application/x-javascript" src="./src/minilibjs/definitions.min.js"></script>    
+    <script type="application/x-javascript" src="./src/main.js"></script> 
+    <script type="application/x-javascript" src="./src/image_lib.js"></script>
+    <script type="application/x-javascript" src="./src/math.js"></script>
+    <script type="application/x-javascript" src="./src/math_2.js"></script>
+  </head>
+  <body onload="main()" id="body">
+  </body>
+</html>

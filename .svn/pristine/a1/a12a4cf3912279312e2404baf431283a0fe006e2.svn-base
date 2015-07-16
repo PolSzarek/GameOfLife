@@ -1,0 +1,113 @@
+function	cl(r, g, b, a)
+{
+    var	color;
+
+    color = [];
+    color[0] = r;
+    color[1] = g;
+    color[2] = b;
+    color[3] = a;
+    return (color);
+}
+
+function	game_settings(map)
+{
+    var	game =
+	{
+	    win:	0,
+	    img:	0,
+	    x_size:	900,
+	    y_size:	600,
+	    cell_size:	10,
+	    on:		0,
+	    off:	0,
+	    dead:	0,
+	    map:	map,
+	    paused:	1,
+	    next_frame:	0
+	};
+    game.on = [];
+    game.off = [];
+    game.dead = [];
+    game.on = cl(0, 200, 200, 255);
+    game.off = cl(56, 40, 32, 255);
+    game.dead = cl(90, 0, 90, 255);
+    return (game);
+}
+
+function	game_of_life_loop(game)
+{
+    if (!game.paused || game.paused && game.next_frame)
+	game.map = calc_next_frame(game.map);
+    game.next_frame = 0;
+    display_map(game, game.map);
+    mlj_put_image_to_window(game.win, game.img, 0, 0);
+    return (0);
+}
+
+function	game_of_life()
+{
+    var	game;
+   
+    console.log("here");
+    map = 0;
+    game = game_settings(map);
+    game.win = mlj_new_window(game.x_size, game.y_size, "gray", "blah");
+    game.img = mlj_new_image(game.win, game.x_size, game.y_size);
+    game.img = display_map(game, game.map);
+    if (!(mlj_upload_button(buf_valid, game)))
+        return (0);
+    console.log("plop");
+    mlj_put_image_to_window(game.win, game.img, 0, 0);
+    mlj_key_hook(gere_key, game);
+    mlj_loop_hook(game_of_life_loop, game);
+    mlj_mouse_hook(gere_mouse, game);
+    mlj_loop();
+    console.log("plop !");
+    return (0);
+}
+
+function        main()
+{
+    mlj_init("Faster Than Life !");
+    game_of_life();
+    return (0);
+}
+
+function        get_buffer(buffer, game)
+{
+    var x;
+    var y;
+    var map;
+
+    map = [[]];
+    if (!(x = x_map_calc(buffer)))
+        return (0);
+    if (!(y = wrong_char_and_y_calc(buffer)))
+        return (0);
+    if (!(map_checker(buffer, x, y)))
+        {
+            console.log("something went wrong with the map, oh noes ! :(");
+            return (0);
+	}
+    console.log("so, i'm working with a map buffer of :", x,"X by", y, "Y");
+    if (!(map = buffer_parser(buffer, x, y)))
+	return (0);
+    echo_parser_success(map, y);
+    console.log("success");
+    game.map = map;
+    return (map);
+}
+
+function        buf_valid(buffer, game)
+{
+    if (!buffer)
+        {
+            console.log("upload failed");
+            return (0);
+        }
+    console.log("file uploaded");
+    if (!(get_buffer(buffer, game)))
+        return (0);
+    return (1);
+}

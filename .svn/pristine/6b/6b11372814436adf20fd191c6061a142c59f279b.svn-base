@@ -1,0 +1,131 @@
+function	cl(r, g, b, a)
+{
+    var	color;
+
+    color = [];
+    color[0] = r;
+    color[1] = g;
+    color[2] = b;
+    color[3] = a;
+    return (color);
+}
+
+function	game_settings()
+{
+    var	game =
+	{
+	    win:	0,
+	    img:	0,
+	    x_size:	900,
+	    y_size:	600,
+	    cell_size:	10,
+	    on:		0,
+	    off:	0
+	};
+    game.on = [];
+    game.off = [];
+    game.on = cl(0, 200, 200, 255);
+    game.off = cl(0, 64, 64, 255);
+    return (game);
+}
+
+function	draw_square(img, cell, color)
+{
+    var	x;
+    var	y;
+
+    x = cell.x;
+    y = cell.y;
+    while (y < cell.size + cell.y)
+	{
+	    while (x < cell.size + cell.x)
+	    {
+		img = piximage(img, x, y, color);
+		x++;
+	    }
+	    x = cell.x;
+	    y++;
+	}
+    return (0);
+}
+
+function	draw_cell(img, cell_size, x, y, color)
+{
+    var	cell;
+
+    cell = 
+	{
+	    x:		0,
+	    y:		0,
+	    size:	cell_size
+	}
+    cell.x = x * (cell.size + 1);
+    cell.y = y * (cell.size + 1);
+    draw_square(img, cell, color);
+    return (img);
+}
+
+function	game_of_life()
+{
+    var	map;    
+    var	game;
+    
+    game = game_settings();
+    map = [[]];
+    
+    mlj_init("game of life");
+
+
+    game.win = mlj_new_window(game.x_size, game.y_size, "black", "blah");
+    game.img = mlj_new_image(game.win, game.x_size, game.y_size);
+    
+    mlj_put_image_to_window(game.win, game.img, 0, 0);
+    console.log("plop !");
+    return (0);
+}
+ 
+function        main()
+{
+    mlj_init();
+    if (!(mlj_upload_button(buf_valid)))
+        return (0);
+    return (0);
+}
+
+function        get_buffer(buffer, win)
+{
+    var x;
+    var y;
+    var map;
+
+    map = [[]];
+    if (!(x = x_map_calc(buffer)))
+        return (0);
+    if (!(y = wrong_char_and_y_calc(buffer)))
+        return (0);
+    if (!(map_checker(buffer, x, y)))
+        {
+            console.log("something went wrong with the map, oh noes ! :(");
+            return (0);
+	    }
+    console.log("so, i'm working with a map buffer of :", x,"X by", y, "Y");
+    if (!(map = buffer_parser(buffer, x, y)))
+	return (0);
+    echo_parser_success(map, y);
+    if (!(wolf(map, x, y)))
+	return (0);
+    return (1);
+}
+
+function        buf_valid(buffer)
+{
+    if (!buffer)
+        {
+            console.log("upload failed");
+            return (0);
+        }
+    console.log("file uploaded");
+    if (!(get_buffer(buffer)))
+        return (0);
+    return (1);
+}

@@ -1,0 +1,24 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+<link rel="stylesheet" href="layout.css" />
+    <script type="application/x-javascript" src="./src/minilibjs/egraph.min.js"></script>
+    <script type="application/x-javascript" src="./src/minilibjs/definitions.min.js"></script>
+    <script type="application/x-javascript" src="./src/main.js"></script>
+    <script type="application/x-javascript" src="./src/image_lib.js"></script>
+    <script type="application/x-javascript" src="./src/math.js"></script>
+    <script type="application/x-javascript" src="./src/math_2.js"></script>
+    <script type="application/x-javascript" src="./src/image_lib.js"></script>
+    <script type="application/x-javascript" src="./src/file_errors/file_errors_1.js"></script>
+    <script type="application/x-javascript" src="./src/file_errors/file_errors_2.js"></script>
+    <script type="application/x-javascript" src="./src/file_errors/file_errors_3.js"></script>
+    <script type="application/x-javascript" src="./src/parser.js"></script>
+    <script type="application/x-javascript" src="./src/draw_display.js"></script>
+    <script type="application/x-javascript" src="./src/calc_cells.js"></script>
+    <script type="application/x-javascript" src="./src/gere_input.js"></script>
+    <script type="application/x-javascript" src="./src/file_handling.js"></script>
+  </head>
+  <center><body onload="main()" id="body">
+<body background="img/Final FTL.png">
+  </body>
+</html>

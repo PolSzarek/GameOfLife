@@ -1,0 +1,21 @@
+/*
+** layout.css for layout in /home/szarek_p/Rendu/Rush/GameOfLife/rush
+** 
+** Made by Pol Szarek
+** Login   <szarek_p@epitech.net>
+** 
+** Started on  Sat Feb 28 15:51:33 2015 Pol Szarek
+** Last update Sun Mar  1 14:11:56 2015 Pol Szarek
+*/
+
+p
+{
+    color: blue;
+}
+
+#body
+{
+    width: 50%;
+    text-align: center;
+    color: green;
+}
